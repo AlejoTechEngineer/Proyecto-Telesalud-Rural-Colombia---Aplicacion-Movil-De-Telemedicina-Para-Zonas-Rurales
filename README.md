@@ -32,6 +32,22 @@
 
 ---
 
+## Arquitectura
+
+```mermaid
+flowchart TD
+    A[Paciente Rural - Android 8+ / iOS 13+] --> B[App Movil React Native - Offline-first / Biometria JWT]
+    C[Medico Especialista - Centro Urbano] --> B
+    B --> D[API REST - Node.js + Express - JWT + RBAC / HTTPS TLS 1.3]
+    D --> E[WebRTC TURN/STUN - Videoconsulta 3G/4G]
+    D --> F[FHIR R4 - Historia Clinica - Patient / Encounter / Condition]
+    D --> G[FCM Push - Notificaciones]
+    D --> H[AWS GovCloud - EC2 / RDS / S3 / CloudFront]
+    H --> I[(PostgreSQL - AES-256 - Soberania datos Colombia)]
+    E --> C
+    F --> I
+```
+
 ## Descripción General
 
 **TeleSalud Rural Colombia** es una aplicación móvil multiplataforma (Android e iOS) diseñada para prestar servicios de telemedicina en municipios rurales y zonas de difícil acceso geográfico de Colombia. La plataforma conecta pacientes rurales con médicos generales y especialistas en centros urbanos, con soporte crítico para operación en condiciones de **baja o nula conectividad**.
@@ -65,22 +81,6 @@ La telemedicina, habilitada por la **Resolución 2654 de 2019** del MinSalud, es
 - 📊 Break-even en el mes 10 post-lanzamiento · ROI proyectado: 120%
 
 ---
-
-## Arquitectura
-
-```mermaid
-flowchart TD
-    A[Paciente Rural - Android 8+ / iOS 13+] --> B[App Movil React Native - Offline-first / Biometria JWT]
-    C[Medico Especialista - Centro Urbano] --> B
-    B --> D[API REST - Node.js + Express - JWT + RBAC / HTTPS TLS 1.3]
-    D --> E[WebRTC TURN/STUN - Videoconsulta 3G/4G]
-    D --> F[FHIR R4 - Historia Clinica - Patient / Encounter / Condition]
-    D --> G[FCM Push - Notificaciones]
-    D --> H[AWS GovCloud - EC2 / RDS / S3 / CloudFront]
-    H --> I[(PostgreSQL - AES-256 - Soberania datos Colombia)]
-    E --> C
-    F --> I
-```
 
 ## Stack Tecnológico
 
