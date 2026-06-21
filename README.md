@@ -1,7 +1,13 @@
+<div align="center">
+
 # 🏥 TeleSalud Rural Colombia — Mobile Telemedicine Platform
 
 > **Proyecto académico** · Maestría en Arquitectura de Software · Politécnico Grancolombiano  
 > Asignatura: Gerencia de Proyectos · Grupo J04\_7 · 2026
+
+</div>
+
+---
 
 ---
 
@@ -389,3 +395,12 @@ Juan Camilo Álvarez Cubillos · Orlando Garzón Ramos · Alejandro De Mendoza
 Politécnico Grancolombiano · Maestría en Arquitectura de Software · 2026
 
 </div>
+
+---
+
+## Autor
+
+**Alejandro De Mendoza**  
+Ingeniero Informático · Especialista en IA · Especialista en Ingeniería de Software · Máster en Arquitectura de Software
+
+[![GitHub](https://img.shields.io/badge/GitHub-AlejoTechEngineer-181717?style=for-the-badge&logo=github)](https://github.com/AlejoTechEngineer)
