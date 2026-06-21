@@ -66,41 +66,21 @@ La telemedicina, habilitada por la **Resolución 2654 de 2019** del MinSalud, es
 
 ---
 
-## Arquitectura de la Solución
+## Arquitectura
 
+```mermaid
+flowchart TD
+    A[Paciente Rural - Android 8+ / iOS 13+] --> B[App Movil React Native - Offline-first / Biometria JWT]
+    C[Medico Especialista - Centro Urbano] --> B
+    B --> D[API REST - Node.js + Express - JWT + RBAC / HTTPS TLS 1.3]
+    D --> E[WebRTC TURN/STUN - Videoconsulta 3G/4G]
+    D --> F[FHIR R4 - Historia Clinica - Patient / Encounter / Condition]
+    D --> G[FCM Push - Notificaciones]
+    D --> H[AWS GovCloud - EC2 / RDS / S3 / CloudFront]
+    H --> I[(PostgreSQL - AES-256 - Soberania datos Colombia)]
+    E --> C
+    F --> I
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    CLIENTE MÓVIL (React Native)                  │
-│   Android 8.0+ / iOS 13+  ·  Offline-first  ·  Biometría JWT    │
-└──────────────────────┬──────────────────────────────────────────┘
-                       │ HTTPS (TLS 1.3)
-┌──────────────────────▼──────────────────────────────────────────┐
-│                  API REST — Node.js + Express                    │
-│            Microservicios · Autenticación JWT + RBAC             │
-└────┬──────────────┬───────────────┬──────────────┬──────────────┘
-     │              │               │              │
-┌────▼────┐  ┌──────▼──────┐  ┌────▼──────┐ ┌────▼──────────────┐
-│ WebRTC  │  │  FHIR R4    │  │ FCM Push  │ │  AWS GovCloud      │
-│ TURN/   │  │  Historia   │  │  Notif.   │ │  EC2 · RDS · S3    │
-│ STUN    │  │  Clínica    │  │           │ │  CloudFront        │
-└─────────┘  └─────────────┘  └───────────┘ └────────────────────┘
-                                                       │
-                                            ┌──────────▼─────────┐
-                                            │  PostgreSQL (AES-  │
-                                            │  256, soberanía    │
-                                            │  datos Colombia)   │
-                                            └────────────────────┘
-```
-
-**Decisiones de arquitectura clave:**
-
-- **Offline-first**: sincronización diferida para zonas sin cobertura. El cliente opera de forma autónoma y sincroniza al recuperar conectividad.
-- **WebRTC con TURN/STUN**: garantiza videoconsultas estables en redes 3G (≥ 500 kbps), con fallback a consulta asincrónica por mensajería clínica.
-- **FHIR R4**: historia clínica interoperable con el ecosistema de salud colombiano. Recursos core: `Patient`, `Encounter`, `Condition`, `MedicationRequest`, `Observation`.
-- **Soberanía de datos**: almacenamiento exclusivo en AWS GovCloud con política de datos colombiana. Sin transferencias a regiones no habilitadas.
-- **RBAC + JWT + biometría**: modelo de control de acceso por roles que cumple Ley 1581/2012 y Resolución 2654/2019.
-
----
 
 ## Stack Tecnológico
 
